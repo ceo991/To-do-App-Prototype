@@ -1,126 +1,105 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          rel="noopener"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex"
-          target="_blank"
-          rel="noopener"
-          >vuex</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
+
+    <div>
+      <b-button variant="success" v-on:click="addListElement()" class="rounded-md shadow"> Add More</b-button>
+      <!--<b-button variant="danger" v-on:click="removeListElement()" class="rounded-md shadow"> Delete Items</b-button>-->
+      <b-button variant="outline-warning" v-on:click="resetListElement()" class="rounded-md shadow"> Reset Items</b-button>
+      <!--<p>{{counts}}</p>-->
+      <ul v-for="count in counts" :key="count" calss="difflist">
+        <li class="difflist">{{count}}</li>
+  <!--<table class="shadow-lg bg-white">
+  <tr>
+    <th class=" bg-primary text-white border text-left px-8 py-4">Company</th>
+    <th class=" bg-primary text-white border text-left px-8 py-4">Contact</th>
+    <th class=" bg-primary text-white border text-left px-8 py-4">Country</th>
+  </tr>
+  <tr>
+    <td class=" border px-8 py-4">Alfreds Futterkiste</td>
+    <td class=" border px-8 py-4">Dante Sparks</td>
+    <td class=" border px-8 py-4">Italy</td>
+  </tr>
+  <tr>
+    <td class=" border px-8 py-4">Centro comercial Moctezuma</td>
+    <td class=" border px-8 py-4">Neal Garrison</td>
+    <td class=" border px-8 py-4">Spain</td>
+  </tr>
+  <tr>
+    <td class=" border px-8 py-4">Ernst Handel</td>
+    <td class=" border px-8 py-4">Maggie O'Neill</td>
+    <td class=" border px-8 py-4">Austria</td>
+  </tr>
+  <b-button variant="danger" v-on:click="removeListElement()" class="rounded-md shadow"> Remove </b-button>
+</table> -->
+        <b-button :id="count" variant="danger" v-on:click="removeElement(count)" class="rounded-md shadow difflist"> Remove </b-button>
+
+      </ul>
+    </div>
+    
+
   </div>
 </template>
 
 <script>
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String,
+  data() {
+    return {
+      count: 0,
+      counts:[]
+    }
   },
+  methods: {
+    addListElement(){
+      this.count++; 
+      this.counts.push(this.count);
+    },
+    removeListElement(){
+        if(this.count>0){
+          this.count--; 
+          this.counts.pop(this.count);
+        }else{
+          alert("There are no elements to remove !!!");
+        }
+    },
+    removeElement(num){
+    
+      this.counts.splice(this.counts.indexOf(num),1);
+      this.count = this.counts[this.counts.length-1];
+      if(this.counts <=0){
+        this.count = 0;
+      }
+      
+      //this.count = num;       
+    },    
+    resetListElement(){
+      if(this.count>0){
+          for(let i = this.counts.length; i > 0; i--){
+            this.counts.pop(this.counts[i]);
+            this.count=0;
+          }      
+      }else{
+        alert("An empty array can not be reset !!!");
+      }
+    }
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.difflist {
+  list-style-type: none; 
+  /*display: block;*/
+  /*padding: 0;*/
+}
 h3 {
   margin: 40px 0 0;
 }
-ul {
+.aotherlist {
   list-style-type: none;
   padding: 0;
 }
-li {
+.otherelement {
   display: inline-block;
   margin: 0 10px;
 }
