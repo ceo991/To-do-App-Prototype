@@ -4,11 +4,12 @@
     <div>
       <b-button variant="success" v-on:click="addListElement()" class="rounded-md shadow"> Add More</b-button>
       <!--<b-button variant="danger" v-on:click="removeListElement()" class="rounded-md shadow"> Delete Items</b-button>-->
-      <b-button variant="outline-warning" v-on:click="resetListElement()" class="rounded-md shadow"> Reset Items</b-button>
+      <b-button variant="outline-danger" v-on:click="resetListElement()" class="rounded-md shadow"> Reset Items</b-button>
       <!--<p>{{counts}}</p>-->
+      
       <ul v-for="count in counts" :key="count" calss="difflist">
         <li class="difflist">{{count}}</li>
-  <!--<table class="shadow-lg bg-white">
+  <!--<table class="shadow-lg bg-white mx-auto">
   <tr>
     <th class=" bg-primary text-white border text-left px-8 py-4">Company</th>
     <th class=" bg-primary text-white border text-left px-8 py-4">Contact</th>
@@ -29,9 +30,23 @@
     <td class=" border px-8 py-4">Maggie O'Neill</td>
     <td class=" border px-8 py-4">Austria</td>
   </tr>
-  <b-button variant="danger" v-on:click="removeListElement()" class="rounded-md shadow"> Remove </b-button>
-</table> -->
-        <b-button :id="count" variant="danger" v-on:click="removeElement(count)" class="rounded-md shadow difflist"> Remove </b-button>
+</table>--> 
+  <b-card
+    title="Card Title"
+    img-src="https://picsum.photos/600/300/?image=25"
+    img-alt="Image"
+    img-top
+    tag="article"
+    style="max-width: 20rem;"
+    class="mb-2 mx-auto shadow"
+  >
+    <b-card-text>
+      Some quick example text to build on the card title and make up the bulk of the card's content.
+    </b-card-text>
+
+    <b-button :id="count" variant="danger" v-on:click="removeElement(count)" class="rounded-md shadow difflist"> Remove </b-button>
+  </b-card>
+        
 
       </ul>
     </div>
