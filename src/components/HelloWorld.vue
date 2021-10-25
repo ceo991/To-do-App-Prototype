@@ -4,7 +4,7 @@
     <div>
       <b-button variant="success" v-on:click="addListElement()" class="rounded-md shadow"> Add More</b-button>
       <!--<b-button variant="danger" v-on:click="removeListElement()" class="rounded-md shadow"> Delete Items</b-button>-->
-      <b-button variant="outline-warning" v-on:click="resetListElement()" class="rounded-md shadow"> Reset Items</b-button>
+      <b-button variant="outline-danger" v-on:click="resetListElement()" class="rounded-md shadow"> Reset Items</b-button>
       <!--<p>{{counts}}</p>-->
       <ul v-for="count in counts" :key="count" calss="difflist">
         <li class="difflist">{{count}}</li>
