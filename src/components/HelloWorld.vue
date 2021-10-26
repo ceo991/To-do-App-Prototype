@@ -58,7 +58,7 @@
 
         <!--<b-button :id="count" variant="success" v-on:click="markAsDone(count)" class="rounded-md shadow difflist"> Mark as done </b-button>
       <b-button :id="count" variant="danger" v-on:click="removeElement(count)" class="rounded-md shadow difflist"> Remove task </b-button>-->
-        <b-input-group prepend="Task" class="mt-3 rounded-md shadow">
+        <b-input-group class="mt-3 rounded-md shadow">
           <b-form-input :id="count+'input'" :class="count+'inputclass'"></b-form-input>
           <b-input-group-append>
             <b-button
