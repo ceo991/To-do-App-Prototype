@@ -112,12 +112,16 @@ export default {
       }
     },
     markAsDone(num) {
-      if(document.getElementById(num+"input").style.textDecoration != "line-through"){
-        document.getElementById(num+"input").style.textDecoration = "line-through";
-        document.getElementById(num+"input").style.color = "red"; 
+      if(document.getElementById(num+"input").value!=""){
+        if(document.getElementById(num+"input").style.textDecoration != "line-through"){
+          document.getElementById(num+"input").style.textDecoration = "line-through";
+          document.getElementById(num+"input").style.color = "red"; 
+        }else{
+          document.getElementById(num+"input").style.textDecoration = "none";
+          document.getElementById(num+"input").style.color = "black";
+        }
       }else{
-        document.getElementById(num+"input").style.textDecoration = "none";
-        document.getElementById(num+"input").style.color = "black";
+        alert("You haven't entered anything!");
       }
       
     },
